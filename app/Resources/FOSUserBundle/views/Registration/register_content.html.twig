@@ -1,0 +1,44 @@
+{% trans_default_domain 'FOSUserBundle' %}
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+<h1 class="text-center" style="margin-top: 20px; margin-bottom: 25px;">Inscription</h1>
+<div class="row container-fluid">
+    <div class="col-lg-3">
+    </div>
+    <div class="row col-lg-6">
+        <div class="col-lg-5">
+            {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
+            {#{{ form_widget(form) }}#}
+            {{ form_errors(form) }}
+
+            {{ form_label(form.username, 'Pseudo') }}
+            {{ form_widget(form.username) }}
+            {{ form_errors(form.username) }}<br>
+
+            {{ form_label(form.email, 'Adresse mail') }}
+            {{ form_widget(form.email) }}
+            {{ form_errors(form.email) }}<br>
+
+            {{ form_label(form.plainPassword.first, 'Mot de passe') }}
+            {{ form_widget(form.plainPassword.first) }}
+            {{ form_errors(form.plainPassword.first) }}<br>
+
+            {{ form_label(form.plainPassword.second, 'Confirmer le mot de passe') }}
+            {{ form_widget(form.plainPassword.second) }}<br>
+        </div>
+        <div class="col-lg-1"></div>
+        <div class="col-lg-5">
+            {{ form_rest(form) }}
+        </div>
+        <em class="row col-lg-12 text-center" style="margin-bottom: 30px; margin-top: 30px;">Votre demande de création de compte sera envoyée par mail aux administrateurs de la plateforme pour validation.</em>
+
+        <div class="col-lg-4"></div>
+        <div class="col-lg-8 block-center">
+            <div class="col-lg-4"></div>
+            <div class="col-lg-6">
+                <input type="submit" value="{{ 'S\'inscrire'|trans }}" class="form-control btn-primary" />
+            </div>
+        </div>
+    {{ form_end(form) }}
+    </div>
+</div>
+<br><br><br><br>

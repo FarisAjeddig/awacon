@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:margin-top="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8" />
+    <title>{% block title %}Awalee Consulting - Forum interne {% endblock %}</title>
+
+
+
+    {% block stylesheets %}
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    {% endblock %}
+
+</head>
+<body>
+
+
+{% block header %}
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light static-top" style="background-color: #f5faff !important;">
+        <div class="container">
+            <a class="navbar-brand" href="{{ url('homepage') }}">
+                <img src="{{ asset('images/logo-awalee.png') }}" style="height: auto; width: 50%" alt="Logo Awalee Consulting" />
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon" style="width: 3em; height: 3em;"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    {% if app.user.id is not defined %}
+                        <li class="nav-item text-center">
+                            <a class="nav-link text-dark" href="{{ url('fos_user_security_login') }}"><h5>Connexion</h5></a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item text-center">
+                            <a class="nav-link text-dark" href="{{ url('fos_user_profile_show') }}"><h5>Mon profil</h5></a>
+                        </li>
+                        <li class="nav-item text-center">
+                            <a class="nav-link text-dark" href="{{ url('fos_user_security_logout') }}"><h5>Deconnexion</h5></a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    {# Affichage des flashbags #}
+    {% for type, messages in app.session.flashbag.all() %}
+        <br><br>
+        {% for message in messages %}
+        <div class="row container-fluid" >
+            <div class="col-md-2"></div>
+            <div class="center alert alert-{{ type }} col-md-2">
+                {{ message }}
+            </div>
+        </div>
+        {% endfor %}
+    {% endfor %}
+
+{% endblock %}
+
+{% block body %}
+{% endblock %}
+
+
+{% block footer %}
+
+    <div class="container-fluid row bg-light static-bottom page-footer" style=" padding-top: 2%; padding-bottom: 2%; color: lightslategray; background-color: #f5faff !important;">
+        <div class="col-lg-6 text-center">
+            Tous droits réservés - <b>Awalee Consulting<sup>©</sup></b> 2019
+        </div>
+        <div class="col-lg-6 text-center">
+            Réalisation par <a href="https://diese.org" target="_blank" style="text-decoration: none; color: lightslategray"><b>
+                    Dièse Junior-Entreprise&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+{#                    <img src="{{ asset('images/logo-diese.png') }}" style="height: auto; width: 18%" alt="Dièse Junior-Entreprise" />#}
+                </b></a>
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+
+{% endblock %}
+</body>
+</html>
