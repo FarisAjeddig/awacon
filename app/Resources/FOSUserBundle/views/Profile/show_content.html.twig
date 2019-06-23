@@ -1,6 +1,64 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
-<div class="fos_user_user_show">
-    <p>{{ 'profile.show.username'|trans }}: {{ user.username }}</p>
-    <p>{{ 'profile.show.email'|trans }}: {{ user.email }}</p>
+<h1 class="text-center" style="margin-top: 2%; margin-bottom: 3%">{% if app.user.id == user.id %} Mon profil {% else %} {{ user.username }} {% endif %}</h1>
+
+<div class="container-fluid row">
+
+
+    <div class="col-lg-4 text-right" style="margin-left: -5%; margin-right: 5%;">
+        <h2>Informations pratiques</h2> <br><br>
+
+        <b>{{ user.lastname | upper }} {{ user.firstname  }}</b><br>
+        <em>{{ user.position }}</em><br><br><br>
+        <a href="tel:{{ user.phonenumber }}">{{ user.phonenumber }}</a><br>
+        <a href="mailto:{{ user.email }}">{{ user.email }}</a><br><br><br>
+        Né(e) le {{ user.birthdate | date('d/m/y') }}<br><br><br><br>
+
+        <a href="{{ url('profile_edit') }}">Modifier ces informations</a>
+    </div>
+
+
+    <div class="col-lg-4 text-center">
+        {% if user.picture is null %}
+            <img src="{{ asset('images/noprofile.jpeg') }}" style="height: auto; width: 50%" alt="Pas de photo de profil" />
+            <br><br><br>
+        {% endif %}
+        {% if app.user.id == user.id %}
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#changePicture">
+                Launch demo modal
+            </button>
+        {% endif %}
+    </div>
+
+
+
+    <div class="col-lg-4">
+        <h2>Description</h2> <br><br>
+
+        {{ user.description | raw }} <br><br><br><br>
+
+        <a href="{{ url('profile_edit_desc') }}">Modifier la description</a>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="changePicture" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
 </div>

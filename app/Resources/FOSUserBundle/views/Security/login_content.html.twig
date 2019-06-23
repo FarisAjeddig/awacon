@@ -19,14 +19,17 @@
             <input type="text" id="username" name="_username" class="form-control" value="{{ last_username }}" required="required" autocomplete="username" /><br><br>
 
             <label for="password">{{ 'security.login.password'|trans }}</label>
-            <input type="password" id="password" name="_password" class="form-control" required="required" autocomplete="current-password" /><br><br>
+            <input type="password" id="password" name="_password" class="form-control" required="required" autocomplete="current-password" />
+            <div class="text-right"><a href="{{ url('fos_user_resetting_request') }}" class="text-danger">Mot de passe oublié</a></div><br><br>
 
-{#            <input type="checkbox" id="remember_me" name="_remember_me" value="on" />#}
+
+
+            {#            <input type="checkbox" id="remember_me" name="_remember_me" value="on" />#}
 {#            <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label><br><br>#}
 
             <input type="submit" class="form-control btn btn-primary" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" />
         </form>
         <br>
-        <div class="text-center">ou <a href="{{ url('fos_user_registration_register') }}">s'inscrire</a></div>
+        <div class="text-center">ou <a href="{{ url('register') }}">s'inscrire</a></div>
     </div>
 </div>

@@ -1,8 +1,13 @@
 {% trans_default_domain 'FOSUserBundle' %}
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
 
-{{ form_start(form, { 'action': path('fos_user_profile_edit'), 'attr': { 'class': 'fos_user_profile_edit' } }) }}
-    {{ form_widget(form) }}
-    <div>
-        <input type="submit" value="{{ 'profile.edit.submit'|trans }}" />
+
+<h1 class="text-center" style="margin-top: 20px; margin-bottom: 25px;">Informations du profil</h1>
+
+<div class="row container-fluid">
+    <div class="col-xl-3 col-sm-3">
     </div>
-{{ form_end(form) }}
+    <div class="col-lg-6 col-sm-6 block-center">
+        {{ form(form) }}
+    </div>
+</div>

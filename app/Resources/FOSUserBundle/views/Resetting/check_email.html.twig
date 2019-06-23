@@ -3,7 +3,10 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
 {% block fos_user_content %}
-<p>
-{{ 'resetting.check_email'|trans({'%tokenLifetime%': tokenLifetime})|nl2br }}
-</p>
+    <div class="text-center" style="margin-top: 3%;">
+        <p>
+        {{ 'resetting.check_email'|trans({'%tokenLifetime%': tokenLifetime})|nl2br }}
+        </p><br><br>
+        <p class="text-primary"><a href="{{ url('fos_user_security_login') }}">Connexion</a></p>
+    </div>
 {% endblock %}

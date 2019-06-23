@@ -1,0 +1,13 @@
+<h3>Un nouvel utilisateur s'est inscrit au forum !</h3><br>
+
+Voici les informations qu'il a renseigné : <br><br>
+
+<b>Nom</b> : {{ user.lastname }}<br>
+<b>Prénom</b> : {{ user.firstname }}<br>
+<b>Email</b> : {{ user.email }}<br>
+<b>Pseudo</b> : {{ user.username }}<br>
+<b>Poste</b> : {{ user.position}}<br>
+<b>Numéro de téléphone</b> : {{ user.phonenumber }}<br>
+<b>Date de naissance</b> : {{ user.birthdate | date("d/m/Y") }}<br><br><br>
+
+Veuillez vous rendre <a href="{{ url('admin_users') }}">ici</a> pour l'activer ou le supprimer.

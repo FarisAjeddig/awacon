@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} {{ parent() }} - Administration - Liste des utilisateurs {% endblock %}
+{% block header %} {{ parent() }} {% endblock %}
+
+{% block body %}
+
+    <h1 class="text-center" style="margin-top: 25px; margin-bottom: 25px;">Les utilisateurs</h1>
+{#    <div class="center">Une page de confirmation sera disponible avant de supprimer un utilisateur, par mesure de sécurité.</div>#}
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-2">
+            </div>
+            <div class="col-lg-8 center">
+                <div class="panel panel-default panel-table">
+                    <div class="panel-heading">
+                        <div class="row">
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <table class="table table-striped table-bordered table-list">
+                            <thead>
+                            <tr>
+                                <th class="hidden-xs">ID</th>
+                                <th>Pseudo</th>
+                                <th>Email</th>
+                                <th>Nom</th>
+                                <th>Prénom</th>
+                                <th>Actions</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for user in users %}
+                                <tr>
+                                    <td class="hidden-xs">{{ user.id }}</td>
+                                    <td>{{ user.username }}</td>
+                                    <td>{{ user.email }}</td>
+                                    <td>{{ user.lastname }}</td>
+                                    <td>{{ user.firstname }}</td>
+                                    <td><a href="{{ url('admin_enable_user', {id: user.id}) }}"
+                                        {% if user.enabled %}   class="text-danger">Désactiver l'utilisateur
+                                        {% else %}  class="text-primary"> Activer l'utilisateur
+                                        {% endif %}
+                                            {% if user.lastlogin is null and user.enabled == 0 %}
+                                            <a class="text-danger" href="{{ url('admin_delete_user', {id: user.id}) }}">Supprimer l'utilisateur</a>
+                                            {% endif %}
+                                        </a></td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+{{ parent() }}
+{% endblock %}
